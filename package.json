@@ -1,0 +1,12 @@
+{
+  "name": "nest-typescript-starter-for-cyclic",
+  "version": "0.1.0",
+  "description": "Nest TypeScript starter repository for Cyclic",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "install": "cd nest && yarn install",
+    "start": "cd nest && yarn start",
+    "build": "cd nest && yarn build"
+  }
+}
