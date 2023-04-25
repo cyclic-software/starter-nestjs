@@ -24,14 +24,14 @@ $ npm install
 ## Running the app
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
+# development - watch mode
 $ npm run start:dev
 
+# development - debug & watch mode
+$ npm run start:debug
+
 # production mode
-$ npm run start:prod
+$ npm run start
 ```
 
 ## Test
