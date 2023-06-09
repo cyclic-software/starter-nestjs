@@ -1,0 +1,4 @@
+export enum PROMOTIONAL_TYPE {
+  AMOUNT = 'AMOUNT',
+  PERCENTAGE = 'PERCENTAGE',
+}

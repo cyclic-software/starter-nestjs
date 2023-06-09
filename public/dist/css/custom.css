@@ -1,0 +1,153 @@
+:root {
+    --blue: #007bff;
+    --indigo: #6610f2;
+    --purple: #6f42c1;
+    --pink: #e83e8c;
+    --red: #dc3545;
+    --orange: #fd7e14;
+    --yellow: #ffc107;
+    --green: #28a745;
+    --teal: #20c997;
+    --cyan: #17a2b8;
+    --white: #fff;
+    --gray: #6c757d;
+    --gray-dark: #343a40;
+    --primary: #007bff;
+    --secondary: #6c757d;
+    --success: #28a745;
+    --info: #17a2b8;
+    --warning: #ffc107;
+    --danger: #dc3545;
+    --light: #f8f9fa;
+    --bordercolor: #D9D9D9;
+    --dark: #343a40;
+    --breakpoint-xs: 0;
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --breakpoint-xl: 1200px;
+    --font-family-sans-serif: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+
+.inactivebtn {
+    background-color: var(--gray-dark) !important;
+    border: 1px solid #CF1C34 !important;
+    border-radius: 15px !important;
+
+
+}
+
+.table-heading>thead>tr>th {
+    text-align: inherit;
+    text-align: -webkit-match-parent;
+    font-weight: bold !important;
+}
+
+.tbl-search {
+    width: 380px;
+    height: 40px;
+    border-radius: 30px;
+    border: 1px solid var(--bordercolor);
+}
+
+.tbl-search>input {
+    height: 20px;
+    width: 320px;
+    position: relative;
+    left: 10px;
+    top: 8px;
+    outline: none;
+    border: none;
+}
+
+.custom-filter-box {
+    width: 158px;
+    height: 40px;
+    border-radius: 30px;
+    border: 1px solid var(--bordercolor);
+}
+
+.custom-filter-box>input {
+    height: 20px;
+    width: 90%;
+    right: 10px;
+    left: 10px;
+    top: 8px;
+    position: relative;
+    outline: none;
+    border: none;
+}
+
+.active-tab {
+    color: var(--danger);
+    font-weight: bold;
+}
+
+.active-tab-border {
+    height: 5px;
+    width: 65px;
+    border: 1px solid var(--danger);
+    position: relative;
+    top: 3px;
+    background-color: var(--danger);
+}
+
+.f-tab:hover {
+    cursor: pointer;
+}
+
+.inactive-tab-border {
+    height: 5px;
+    width: 65px;
+    /* border: 1px solid var(--danger); */
+    position: relative;
+    top: 3px;
+    /* background-color: var(--danger); */
+    visibility: hidden;
+}
+
+.breadcrumb-link>a,.breadcrumb-link>span {
+    font-weight: bold;
+}
+.form-label{
+    font-weight: unset !important;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
+
+.all-active-tab{
+    height: 5px;
+    width: 30px;
+    border: 1px solid var(--danger);
+    position: relative;
+    top: 3px;
+    background-color: var(--danger);
+}
+.all-inactive-tab{
+    height: 5px;
+    width: 30px;
+    /* border: 1px solid var(--danger); */
+    position: relative;
+    top: 3px;
+    /* background-color: var(--danger); */
+    visibility: hidden;
+}
+.paid-active-tab{
+    height: 5px;
+    width: 34px;
+    border: 1px solid var(--danger);
+    position: relative;
+    top: 3px;
+    background-color: var(--danger);
+}
+.paid-inactive-tab{
+    height: 5px;
+    width: 34px;
+    /* border: 1px solid var(--danger); */
+    position: relative;
+    top: 3px;
+    /* background-color: var(--danger); */
+    visibility: hidden; 
+}

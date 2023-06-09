@@ -1,0 +1,153 @@
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel d-flex">
+            <div class="image">
+                <img src="{{process.env.URL}}/images/image.jpg" class="img-circle elevation-2" alt="User Image">
+            </div>
+         
+        </div>
+        <!-- SidebarSearch Form -->
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+
+                <!-- Dropdown level 1 -->
+                <li class="nav-item panel-default" id="dropdown">
+                    <!-- Dropdown-->
+                    <a class="nav-link" data-toggle="collapse" href="#dropdown-lvl1">
+                        <span class="side_icon">
+                            <img src="{{process.env.URL}}/images/side-icon0.svg" alt="side-icon0">
+                        </span>
+                        <p>Order Management</p>
+                    </a>
+                    <div id="dropdown-lvl1" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <ul class="nav navbar-nav">
+                                <li><a href="#">Now Order</a></li>
+                                <li><a href="#">Advanced Order</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Dropdown-->
+                </li>
+                
+                <li class="nav-item">
+                    <a href="{{process.env.URL}}/admin/users" {{#if customer }} class="nav-link active" {{else}} class="nav-link" {{/if}} id="customer">
+
+                    {{!-- <a href="{{process.env.URL}}/admin/users" class="nav-link" id="customer"> --}}
+                        <span class="side_icon">
+                            <img src="{{process.env.URL}}/images/side-icon1.svg" alt="side-icon1">
+                        </span>
+                        <p>
+                            Customers
+                        </p>
+                    </a>
+                </li>
+
+                <!-- Dropdown level 2 -->
+
+                <li class="nav-item panel-default" id="dropdown">
+                        <a  class="nav-link {{#if partner }} active{{/if}}"  data-toggle="collapse" href="#dropdown-lvl2">
+                        <span class="side_icon">
+                            <img src="{{process.env.URL}}/images/side-icon3.svg" alt="side-icon3">
+                        </span>
+                        <p>Partners</p>
+                    </a>
+                    
+                    <div id="dropdown-lvl2" class="panel-collapse collapse {{#if partner }} show {{/if}}" >
+                        <div class="panel-body">
+                            <ul class="nav navbar-nav" >
+                                <li><a href="#">Current</a></li>
+                                <li><a href="{{process.env.URL}}/admin/drivers/pending"  {{#if partner }} class="nav-link active" id="pending" {{/if}}>Pending</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Dropdown-->
+                </li>
+
+            
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <span class="side_icon">
+                            <img src="{{process.env.URL}}/images/side-icon4.svg" alt="side-icon4">
+                        </span>
+                        <p>
+                            Payment
+                        </p>
+                    </a>
+                </li>
+
+                <!-- Dropdown level 3 -->
+                <li class="nav-item panel-default" id="dropdown">
+                    <!-- Dropdown-->
+                    <a class="nav-link" data-toggle="collapse" href="#dropdown-lvl3">
+                        <span class="side_icon">
+                            <img src="{{process.env.URL}}/images/side-icon5.svg" alt="side-icon5">
+                        </span>
+                        <p>User Settings</p>
+                    </a>
+                    <div id="dropdown-lvl3" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <ul class="nav navbar-nav">
+                                <li><a href="#">All Users</a></li>
+                                <li><a href="#">Role Function</a></li>
+                                <li><a href="#">Add New User</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Dropdown-->
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <span class="side_icon">
+                            <img src="{{process.env.URL}}/images/side-icon6.svg" alt="side-icon6">
+                        </span>
+                        <p>
+                            Promotional
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <span class="side_icon">
+                            <img src="{{process.env.URL}}/images/side-icon7.svg" alt="side-icon7">
+                        </span>
+                        <p>
+                            Reports
+                        </p>
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+        <div class="user_profile_menu">
+            <ul>
+                <li class="switch_to">
+                    <span>Switch to:</span>
+                    <a href="#">
+                        <img src="{{process.env.URL}}/images/image.jpg" alt="User Image">
+                    </a>
+                </li>
+                <li class="user_here_bt">
+                    <figure>
+                        <img src="{{process.env.URL}}/images/image.jpg" alt="User Image">
+                    </figure>
+                    <h5>Alson Toh</h5>
+                </li>
+            </ul>
+        </div>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>
+
+

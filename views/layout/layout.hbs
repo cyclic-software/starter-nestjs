@@ -1,0 +1,22 @@
+{{#> base}}
+{{#*inline "bodycontents"}}
+{{> header}}
+{{> sidebar}}
+
+<div class="content-wrapper" style="background-color:#fff;">
+    <section class="content">
+        <div class="container-fluid">
+            {{>maincontents}}
+        </div>
+    </section>
+
+    <aside class="control-sidebar control-sidebar-dark">
+    </aside>
+</div>
+
+{{> footer}}
+{{/inline}}
+{{#*inline "customscript"}}
+{{>jsscript}}
+{{/inline}}
+{{/base}}
