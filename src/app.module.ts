@@ -30,9 +30,10 @@ import { PurchaseOrdersModule } from './purchase-orders/purchase-orders.module';
       database: process.env.DATABASE_PASSWORD,
       url: process.env.DATABASE_URL,
       autoLoadEntities: true,
-      synchronize: false,
       migrationsRun: false,
       dropSchema: false,
+      synchronize: false ,
+      logging: false
     }),
     UsersModule,
     ProductsModule,

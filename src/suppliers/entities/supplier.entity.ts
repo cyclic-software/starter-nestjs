@@ -10,9 +10,13 @@ export class Supplier {
   lastName: string;
   @Column()
   address: string;
-  @Column()
+  @Column({
+    nullable:true
+  })
   gstNumber: string;
-  @Column()
+  @Column({
+    nullable:true
+  })
   additionalInfo: string;
   @Column()
   mobileNumber: string;

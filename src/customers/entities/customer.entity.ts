@@ -1,8 +1,13 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity()
 export class Customer {
-
   @PrimaryGeneratedColumn()
   customerId: number;
   @Column()
@@ -11,16 +16,20 @@ export class Customer {
   lastName: string;
   @Column()
   address: string;
-  @Column()
+  @Column({
+    nullable:true
+  })
   gstNumber: string;
-  @Column()
+  @Column({
+    nullable:true
+  })
   additionalInfo: string;
   @Column()
   mobileNumber: string;
   @Column({ default: true })
   isActive: boolean;
   @CreateDateColumn()
-  createdDate: Date
+  createdDate: Date;
   @UpdateDateColumn()
-  updatedDate: Date
+  updatedDate: Date;
 }
