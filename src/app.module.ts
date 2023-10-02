@@ -32,8 +32,8 @@ import { PurchaseOrdersModule } from './purchase-orders/purchase-orders.module';
       autoLoadEntities: true,
       migrationsRun: false,
       dropSchema: false,
-      synchronize: false ,
-      logging: false
+      synchronize: true ,
+      logging: true
     }),
     UsersModule,
     ProductsModule,

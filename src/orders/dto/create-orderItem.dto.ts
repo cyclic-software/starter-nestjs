@@ -1,6 +1,7 @@
+import { Product } from "src/products/entities/product.entity";
+
 export class CreateOrderItemDto {
-  orderId: number;
   productId: number;
   quantity: number;
-  cost: number;
+  productSellingPrice: number;
 }

@@ -13,9 +13,9 @@ export class CustomersService {
   ) {}
 
   create(createCustomerDto: CreateCustomerDto) {
-     console.log('createCustomerDto',createCustomerDto)
-     return createCustomerDto;
-     //return this.customersRepository.save(createCustomerDto);
+     //console.log('createCustomerDto',createCustomerDto)
+     //return createCustomerDto;
+     return this.customersRepository.save(createCustomerDto);
   }
 
   findAll(): Promise<Customer[]> {

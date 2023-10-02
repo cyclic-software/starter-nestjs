@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Order } from './order.entity';
 import { Product } from 'src/products/entities/product.entity';
 
@@ -7,10 +7,12 @@ export class OrderItem {
   @PrimaryGeneratedColumn()
   orderItemId: number;
 
-  @ManyToOne((type) => Order, (order) => order.items)
-  orderId: number;
+  @ManyToOne((type) => Order, (order) => order.items,{
+    createForeignKeyConstraints:false,
+  })
+  orderId: Order;
 
-  @OneToOne((type) => Product, (product) => product.productId)
+  @ManyToMany((type) => Product, (product) => product.productId)
   @JoinColumn()
   productId: Product;
 

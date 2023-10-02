@@ -1,4 +1,13 @@
-import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToMany,
+  ManyToOne,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { OrderItem } from './orderItem.entity';
 import { Customer } from 'src/customers/entities/customer.entity';
 
@@ -6,9 +15,8 @@ import { Customer } from 'src/customers/entities/customer.entity';
 export class Order {
   @PrimaryGeneratedColumn()
   orderId: number;
-  
-  @OneToOne((type) => Customer, (customer) => customer.customerId)
-  @JoinColumn()
+
+  @ManyToOne((type) => Customer, (customer) => customer.customerId, { cascade: true })
   customerId: Customer;
 
   @Column()
@@ -20,6 +28,6 @@ export class Order {
   @Column()
   grandTotal: number;
 
-  @OneToMany((type) => OrderItem, (orderItem) => orderItem.orderId)
+  @OneToMany((type) => OrderItem, (orderItem) => orderItem.orderId,{ cascade: true,  createForeignKeyConstraints: false })
   items: OrderItem[];
 }
