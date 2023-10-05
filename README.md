@@ -34,6 +34,8 @@ $ npm run start:debug
 $ npm run start
 ```
 
+> The app will start running at port : 3000 (http://localhost:3000/)
+
 ## Test
 
 ```bash
