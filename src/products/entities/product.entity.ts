@@ -1,6 +1,7 @@
 import {
   Column,
   CreateDateColumn,
+  DeleteDateColumn,
   Entity,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -8,14 +9,15 @@ import {
 
 @Entity()
 export class Product {
-  
   @PrimaryGeneratedColumn()
   productId: number;
   @Column()
   productName: string;
-  @Column({ scale: 2 })
+  @Column({ scale: 2, default: 0 })
+  productStock: number;
+  @Column({ scale: 2, default: 0 })
   productCostPrice: number;
-  @Column({ scale: 2 })
+  @Column({ scale: 2, default: 0 })
   productSellingPrice: number;
   @Column({ default: true })
   isActive: boolean;
@@ -23,4 +25,6 @@ export class Product {
   createdDate: Date;
   @UpdateDateColumn()
   updatedDate: Date;
+  @DeleteDateColumn()
+  deletedAt?: Date;
 }

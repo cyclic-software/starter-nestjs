@@ -7,7 +7,6 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 export class ProductsService {
-  
   constructor(
     @InjectRepository(Product) private productsRepository: Repository<Product>,
   ) {}
@@ -20,16 +19,15 @@ export class ProductsService {
     return this.productsRepository.find();
   }
 
-
-  findOne(id: number) {
-    return `This action returns a #${id} product`;
+  findOne(productId: number) {
+    return this.productsRepository.findOneBy({ productId });
   }
 
-  update(id: number, updateProductDto: UpdateProductDto) {
-    return `This action updates a #${id} product`;
+  update(productId: number, updateProductDto: UpdateProductDto) {
+    return this.productsRepository.update({ productId }, updateProductDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} product`;
+  remove(productId: number) {
+    return this.productsRepository.softDelete({ productId });
   }
 }

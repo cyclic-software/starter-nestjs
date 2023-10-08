@@ -13,8 +13,6 @@ export class CustomersService {
   ) {}
 
   create(createCustomerDto: CreateCustomerDto) {
-     //console.log('createCustomerDto',createCustomerDto)
-     //return createCustomerDto;
      return this.customersRepository.save(createCustomerDto);
   }
 
@@ -22,15 +20,15 @@ export class CustomersService {
     return this.customersRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} customer`;
+  findOne(customerId: number) {
+    return this.customersRepository.findOneBy({ customerId });
   }
 
-  update(id: number, updateCustomerDto: UpdateCustomerDto) {
-    return `This action updates a #${id} customer`;
+  update(customerId: number, updateCustomerDto: UpdateCustomerDto) {
+    return this.customersRepository.update({ customerId }, updateCustomerDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} customer`;
+  remove(customerId: number) {
+    return this.customersRepository.softDelete({ customerId });
   }
 }

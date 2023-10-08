@@ -2,6 +2,7 @@ import { Order } from 'src/orders/entities/order.entity';
 import {
   Column,
   CreateDateColumn,
+  DeleteDateColumn,
   Entity,
   ManyToOne,
   OneToMany,
@@ -20,11 +21,11 @@ export class Customer {
   @Column()
   address: string;
   @Column({
-    nullable:true
+    nullable: true,
   })
   gstNumber: string;
   @Column({
-    nullable:true
+    nullable: true,
   })
   additionalInfo: string;
   @Column()
@@ -36,5 +37,7 @@ export class Customer {
   @UpdateDateColumn()
   updatedDate: Date;
   @OneToMany((type) => Order, (order) => order.orderId)
-  orders : Order[]
+  orders: Order[];
+  @DeleteDateColumn()
+  deletedAt?: Date;
 }
