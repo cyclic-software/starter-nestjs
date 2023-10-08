@@ -8,6 +8,7 @@ import {
 
 @Entity()
 export class Product {
+  
   @PrimaryGeneratedColumn()
   productId: number;
   @Column()
