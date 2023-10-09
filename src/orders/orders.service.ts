@@ -20,88 +20,36 @@ export class OrdersService {
   ) {}
 
   async create(createOrderDto: CreateOrderDto) {
-    const { items, customerId,taxPerctange } = createOrderDto;
-    // const productIds = items?.map(({ productId }) => productId);
-    // console.log('productIds', productIds);
-    // const products = await this.productsRepository
-    //   .createQueryBuilder('Product')
-    //   .where({
-    //     productId: In(productIds),
-    //   })
-    //   .printSql()
-    //   .execute();
-    // // let retrivedProrduct = {};
-    // // (
-    // //   await this.productsRepository.findBy({
-    // //     productId: In(productIds),
-    // //   })
-    // // )?.map((item) => {
-    // //   console.log('Retrived Ite',item)
-    // //   retrivedProrduct = {
-    // //     ...retrivedProrduct,
-    // //     [item.productId]: retrivedProrduct,
-    // //   };
-    // // });
-    // console.log(
-    //   'retrivedProrduct',
-    //   products,
-    //   await this.productsRepository.find(),
-    // );
-    // return;
-    // let grandTotal = 0;
-    // const order = new Order();
-    // order.customerId = customerId;
-    // order.grandTotal = grandTotal + 5;
-    // order.taxPerctange = 5;
-    // order.totalBeforeTax = grandTotal;
-    // this.ordersRepository.save(order);
-
-    // order.items = retrivedItemsForSelectedItem;
-    // console.log('order',order)
-    // this.ordersRepository.save(order);
-
-    //this.orderItemRepository.save(retrivedItemsForSelectedItem);
-    // console.log('order', order);
-    // return this.ordersRepository.save(order);
-    //createOrderDto.items = items;
-    //return this.ordersRepository.create(createOrderDto);
-    //console.log('createOrderDto', createOrderDto);
-
-    //return this.ordersRepository.save(createOrderDto);
-
-    const customer = await this.customersRepository.findOneBy({ customerId });
-    const productId = 1;
-    const testProduct: Product[] = await this.productsRepository
-      .createQueryBuilder('product')
-      .where('product.productId = :productId', { productId })
-      .execute();
-    console.log(
-      'testProduct',
-      testProduct,
-      await this.productsRepository.find(),
-    );
+    const { items, customerId, taxPerctange } = createOrderDto;
+    let orderProductMap = {};
+    const itemIds = items?.map((i) => {
+      orderProductMap = {
+        ...orderProductMap,
+        [i.productId]: { ...i },
+      };
+      return i.productId;
+    });
+    const customer = await this.customersRepository.preload({ customerId });
+    const retriveOrderProducts = await this.productsRepository.findBy({
+      productId: In(itemIds),
+    });
     const order = new Order();
-    let grandTotal = 0;
     order.customerId = customer;
     order.taxPerctange = taxPerctange;
-    const retrivedItemsForSelectedItem = await Promise.all(
-      items?.map(async (pItem) => {
-        const product: Product = await this.productsRepository.findOneBy({
-          productId: pItem.productId,
-        });
-        const processedItem = new OrderItem();
-        processedItem.cost = pItem.quantity * product?.productSellingPrice;
-        processedItem.productId = product;
-        //  processedItem.orderId = order;
-        processedItem.quantity = pItem.quantity;
-        grandTotal = grandTotal + pItem.quantity * product?.productSellingPrice;
-        return processedItem;
-      }),
-    );
-    //this.orderItemRepository.save(retrivedItemsForSelectedItem);
+    let grandTotal = 0;
+    const retrivedItemsForSelectedItem = retriveOrderProducts?.map((i) => {
+      const processedItem = new OrderItem();
+      const itemQuantity = orderProductMap[i.productId].quantity;
+      const itemCost = itemQuantity * i?.productSellingPrice;
+      processedItem.cost = itemCost;
+      processedItem.productId = i;
+      processedItem.quantity = itemQuantity;
+      grandTotal = grandTotal + itemCost;
+      return processedItem;
+    });
     order.totalBeforeTax = grandTotal;
     order.items = retrivedItemsForSelectedItem;
-    order.grandTotal = grandTotal + (order.taxPerctange / 100) * grandTotal;
+    order.grandTotal = grandTotal + (taxPerctange / 100) * grandTotal;
     return this.ordersRepository.save(order);
   }
 
@@ -109,7 +57,10 @@ export class OrdersService {
     return this.ordersRepository.find({
       relations: {
         items: true,
+        customerId: true,
       },
+      skip: 0,
+      take: 2,
     });
   }
 
@@ -117,8 +68,9 @@ export class OrdersService {
     return `This action returns a #${id} order`;
   }
 
-  update(id: number, UpdateOrderDto: UpdateOrderDto) {
-    return `This action updates a #${id} order`;
+  update(orderId: number, updateOrder: UpdateOrderDto) {
+    console.log('Update Order',orderId);
+    return this.ordersRepository.update({ orderId }, null);
   }
 
   remove(id: number) {

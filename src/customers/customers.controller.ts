@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { CustomersService } from './customers.service';
 import { CreateCustomerDto } from './dto/create-customer.dto';
 import { UpdateCustomerDto } from './dto/update-customer.dto';
@@ -17,13 +25,21 @@ export class CustomersController {
     return this.customersService.findAll();
   }
 
+  @Get('/search/:searchKey')
+  search(@Param('searchKey') searchKey: string) {
+    return this.customersService.findByNameOrMobileNumber(searchKey);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.customersService.findOne(+id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCustomerDto: UpdateCustomerDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateCustomerDto: UpdateCustomerDto,
+  ) {
     return this.customersService.update(+id, updateCustomerDto);
   }
 

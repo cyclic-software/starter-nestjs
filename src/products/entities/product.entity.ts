@@ -1,8 +1,11 @@
+import { OrderItem } from 'src/orders/entities/orderItem.entity';
 import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -27,4 +30,7 @@ export class Product {
   updatedDate: Date;
   @DeleteDateColumn()
   deletedAt?: Date;
+
+  @OneToMany(() => OrderItem, (orderItem) => orderItem.productId) // specify inverse side as a second parameter
+  orderItems: OrderItem[];
 }

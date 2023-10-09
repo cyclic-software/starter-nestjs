@@ -2,18 +2,18 @@ import { Injectable } from '@nestjs/common';
 import { CreateCustomerDto } from './dto/create-customer.dto';
 import { UpdateCustomerDto } from './dto/update-customer.dto';
 import { Customer } from './entities/customer.entity';
-import { Repository } from 'typeorm';
+import { ILike, Like, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class CustomersService {
-
   constructor(
-    @InjectRepository(Customer) private customersRepository: Repository<Customer>,
+    @InjectRepository(Customer)
+    private customersRepository: Repository<Customer>,
   ) {}
 
   create(createCustomerDto: CreateCustomerDto) {
-     return this.customersRepository.save(createCustomerDto);
+    return this.customersRepository.save(createCustomerDto);
   }
 
   findAll(): Promise<Customer[]> {
@@ -22,6 +22,23 @@ export class CustomersService {
 
   findOne(customerId: number) {
     return this.customersRepository.findOneBy({ customerId });
+  }
+
+  findByNameOrMobileNumber(searchKey: string) {
+    return this.customersRepository.find({
+      where: [
+        {
+          mobileNumber: ILike('%' + searchKey + '%'),
+        },
+        {
+          firstName: ILike('%' + searchKey + '%'),
+        },
+        {
+          lastName: ILike('%' + searchKey + '%'),
+        },
+      ],
+      take: 5,
+    });
   }
 
   update(customerId: number, updateCustomerDto: UpdateCustomerDto) {

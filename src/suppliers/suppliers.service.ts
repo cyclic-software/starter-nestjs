@@ -19,16 +19,16 @@ export class SuppliersService {
     return this.suppliersRepository.find();
   }
  
-
-  findOne(id: number) {
-    return `This action returns a #${id} supplier`;
+  findOne(supplierId: number) {
+    return this.suppliersRepository.findOneBy({ supplierId });
   }
 
-  update(id: number, updateSupplierDto: UpdateSupplierDto) {
-    return `This action updates a #${id} supplier`;
+  update(supplierId: number, updateSupplierDto: UpdateSupplierDto) {
+    return this.suppliersRepository.update({ supplierId }, updateSupplierDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} supplier`;
+  remove(supplierId: number) {
+    return this.suppliersRepository.softDelete({ supplierId });
   }
+
 }

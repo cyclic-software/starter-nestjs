@@ -17,6 +17,11 @@ export class ProductsController {
     return this.productsService.findAll();
   }
 
+  @Get('/search/:searchKey')
+  search(@Param('searchKey') searchKey: string) {
+    return this.productsService.findByName(searchKey);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.productsService.findOne(+id);
