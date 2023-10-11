@@ -91,7 +91,7 @@ export class OrdersService {
     // const {items} = orderItem;
     // const {items:updateItems} = updateOrder;
     Object.assign(orderItem, updateOrder);
-    console.log('Update Order after merge', orderItem); 
+    //console.log('Update Order after merge', orderItem); 
     return this.ordersRepository.save(orderItem);
   }
 
