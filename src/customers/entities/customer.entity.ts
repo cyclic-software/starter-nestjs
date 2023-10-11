@@ -13,7 +13,6 @@ import {
 @Entity()
 export class Customer {
 
-  
   @PrimaryGeneratedColumn()
   customerId: number;
   @Column()
@@ -39,8 +38,8 @@ export class Customer {
   @UpdateDateColumn()
   updatedDate: Date;
 
-  // @OneToMany((type) => Order, (order) => order.orderId)
-  // orders: Order[];
+  @OneToMany((type) => Order, (order) => order.orderId)
+  orders: Order[];
   
   @DeleteDateColumn()
   deletedAt?: Date;

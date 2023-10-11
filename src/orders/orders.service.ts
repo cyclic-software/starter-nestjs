@@ -41,7 +41,7 @@ export class OrdersService {
       const processedItem = new OrderItem();
       const itemQuantity = orderProductMap[i.productId].quantity;
       const itemCost = itemQuantity * i?.productSellingPrice;
-      processedItem.cost = itemCost;
+      processedItem.pricePerUnit = i?.productSellingPrice;
       processedItem.productId = i;
       processedItem.quantity = itemQuantity;
       grandTotal = grandTotal + itemCost;
@@ -59,19 +59,40 @@ export class OrdersService {
         items: true,
         customerId: true,
       },
-      skip: 0,
-      take: 2,
+      // skip: 0,
+      // take: 2,
     });
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} order`;
+    return this.ordersRepository.find({
+      where: {
+        orderId: id,
+      },
+      relations: {
+        items: true,
+        customerId: true,
+      },
+    });
   }
 
-  update(orderId: number, updateOrder: UpdateOrderDto) {
-    console.log('Update Order', orderId);
-    //return null;
-    return this.ordersRepository.update({ orderId },updateOrder);
+  async update(orderId: number, updateOrder: any) {
+    console.log('Update Order', orderId, updateOrder);
+    //return null
+    const orderItem = await this.ordersRepository.findOne({
+      where: {
+        orderId: orderId,
+      },
+      relations: {
+        items: true,
+        customerId: true,
+      },
+    });
+    // const {items} = orderItem;
+    // const {items:updateItems} = updateOrder;
+    Object.assign(orderItem, updateOrder);
+    console.log('Update Order after merge', orderItem); 
+    return this.ordersRepository.save(orderItem);
   }
 
   remove(id: number) {

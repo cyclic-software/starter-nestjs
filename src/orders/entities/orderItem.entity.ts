@@ -1,4 +1,9 @@
 import {
+  AfterInsert,
+  AfterLoad,
+  AfterUpdate,
+  BeforeInsert,
+  BeforeUpdate,
   Column,
   Entity,
   JoinColumn,
@@ -29,6 +34,24 @@ export class OrderItem {
   @Column()
   quantity: number;
 
-  @Column()
+  @Column({
+    type: 'decimal',
+    nullable: true,
+  })
+  pricePerUnit: number;
+
+  @Column({
+    type: 'decimal',
+    nullable: true,
+  })
   cost: number;
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  @AfterInsert()
+  @AfterLoad()
+  @AfterUpdate()
+  updateCost() {
+    this.cost = this.quantity * this.pricePerUnit;
+  }
 }

@@ -19,7 +19,7 @@ import { PurchaseOrdersModule } from './purchase-orders/purchase-orders.module';
     }),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'client'),
-      exclude: ['/api/(.*)']
+      exclude: ['/api/(.*)'],
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
@@ -32,15 +32,15 @@ import { PurchaseOrdersModule } from './purchase-orders/purchase-orders.module';
       autoLoadEntities: true,
       migrationsRun: false,
       dropSchema: false,
-      synchronize: true ,
-      logging: true
+      synchronize: true,
+      logging: ['error'],
     }),
     UsersModule,
     ProductsModule,
     CustomersModule,
     SuppliersModule,
     OrdersModule,
-    PurchaseOrdersModule
+    PurchaseOrdersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

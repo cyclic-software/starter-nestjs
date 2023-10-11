@@ -1,4 +1,9 @@
 import {
+  AfterInsert,
+  AfterLoad,
+  AfterUpdate,
+  BeforeInsert,
+  BeforeUpdate,
   Column,
   CreateDateColumn,
   DeleteDateColumn,
@@ -48,4 +53,19 @@ export class Order {
   updatedDate: Date;
   @DeleteDateColumn()
   deletedAt?: Date;
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  @AfterInsert()
+  @AfterLoad()
+  @AfterUpdate()
+  calculateTotals() {
+    const total = this.items?.reduce(
+      (sum: number, i: OrderItem) => sum + i.cost,
+      0,
+    );
+    this.totalBeforeTax = total;
+    this.grandTotal =
+      this.totalBeforeTax * (this.taxPerctange / 100) + this.totalBeforeTax;
+  }
 }
