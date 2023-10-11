@@ -24,7 +24,7 @@ export class OrdersController {
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateOrderDto: UpdateOrderDto) {
-    console.log('Update order hit');
+    console.log('Update order hit tho');
     return this.ordersService.update(+id, updateOrderDto);
   }
 

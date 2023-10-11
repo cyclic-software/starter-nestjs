@@ -25,7 +25,7 @@ export class OrdersService {
     const itemIds = items?.map((i) => {
       orderProductMap = {
         ...orderProductMap,
-        [i.productId]: { ...i },
+        [i.productId as unknown as number]: { ...i },
       };
       return i.productId;
     });
@@ -69,8 +69,9 @@ export class OrdersService {
   }
 
   update(orderId: number, updateOrder: UpdateOrderDto) {
-    console.log('Update Order',orderId);
-    return this.ordersRepository.update({ orderId }, null);
+    console.log('Update Order', orderId);
+    //return null;
+    return this.ordersRepository.update({ orderId },updateOrder);
   }
 
   remove(id: number) {

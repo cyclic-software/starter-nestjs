@@ -19,6 +19,9 @@ export class Order {
   @PrimaryGeneratedColumn()
   orderId: number;
 
+  // @Column()
+  // customerId: number;
+
   @ManyToOne((type) => Customer, (customer) => customer.customerId, {
     cascade: true,
   })
