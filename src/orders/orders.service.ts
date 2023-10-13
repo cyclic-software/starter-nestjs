@@ -53,14 +53,14 @@ export class OrdersService {
     return this.ordersRepository.save(order);
   }
 
-  findAll(): Promise<Order[]> {
-    return this.ordersRepository.find({
+  findAll({ pageSize, pageIndex }): Promise<[Order[], number]> {
+    return this.ordersRepository.findAndCount({
       relations: {
         items: true,
         customerId: true,
       },
-      // skip: 0,
-      // take: 2,
+      skip: pageSize * pageIndex,
+      take: pageSize,
     });
   }
 
@@ -91,7 +91,7 @@ export class OrdersService {
     // const {items} = orderItem;
     // const {items:updateItems} = updateOrder;
     Object.assign(orderItem, updateOrder);
-    //console.log('Update Order after merge', orderItem); 
+    //console.log('Update Order after merge', orderItem);
     return this.ordersRepository.save(orderItem);
   }
 

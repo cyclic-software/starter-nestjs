@@ -8,17 +8,21 @@ import { Repository } from 'typeorm';
 @Injectable()
 export class SuppliersService {
   constructor(
-    @InjectRepository(Supplier) private suppliersRepository: Repository<Supplier>,
+    @InjectRepository(Supplier)
+    private suppliersRepository: Repository<Supplier>,
   ) {}
 
   create(createSupplierDto: CreateSupplierDto) {
     return this.suppliersRepository.save(createSupplierDto);
   }
 
-  findAll(): Promise<Supplier[]> {
-    return this.suppliersRepository.find();
+  findAll({ pageSize, pageIndex }): Promise<[Supplier[], number]> {
+    return this.suppliersRepository.findAndCount({
+      skip: pageSize * pageIndex,
+      take: pageSize,
+    });
   }
- 
+
   findOne(supplierId: number) {
     return this.suppliersRepository.findOneBy({ supplierId });
   }
@@ -30,5 +34,4 @@ export class SuppliersService {
   remove(supplierId: number) {
     return this.suppliersRepository.softDelete({ supplierId });
   }
-
 }

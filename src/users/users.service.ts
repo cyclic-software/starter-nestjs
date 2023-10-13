@@ -16,8 +16,11 @@ export class UsersService {
     return newUser;
   }
 
-  findAll(): Promise<User[]> {
-    return this.usersRepository.find();
+  findAll({ pageSize, pageIndex }): Promise<[User[], number]> {
+    return this.usersRepository.findAndCount({
+      skip: pageSize * pageIndex,
+      take: pageSize,
+    });
   }
 
   findOne(id: number) {

@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { CustomersService } from './customers.service';
 import { CreateCustomerDto } from './dto/create-customer.dto';
@@ -21,8 +22,11 @@ export class CustomersController {
   }
 
   @Get()
-  findAll() {
-    return this.customersService.findAll();
+  findAll(
+    @Query('pageIndex') pageIndex: number,
+    @Query('pageSize') pageSize: number,
+  ) {
+    return this.customersService.findAll({ pageIndex, pageSize });
   }
 
   @Get('/search/:searchKey')

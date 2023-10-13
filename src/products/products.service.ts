@@ -15,8 +15,11 @@ export class ProductsService {
     return this.productsRepository.save(createProductDto);
   }
 
-  findAll(): Promise<Product[]> {
-    return this.productsRepository.find();
+  findAll({ pageSize, pageIndex }): Promise<[Product[], number]> {
+    return this.productsRepository.findAndCount({
+      skip: pageSize * pageIndex,
+      take: pageSize,
+    });
   }
 
   findByName(searchKey: string) {
@@ -24,7 +27,7 @@ export class ProductsService {
       where: [
         {
           productName: ILike('%' + searchKey + '%'),
-        }
+        },
       ],
       take: 5,
     });

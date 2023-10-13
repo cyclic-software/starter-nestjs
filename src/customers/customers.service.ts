@@ -16,8 +16,11 @@ export class CustomersService {
     return this.customersRepository.save(createCustomerDto);
   }
 
-  findAll(): Promise<Customer[]> {
-    return this.customersRepository.find();
+  findAll({ pageSize, pageIndex }): Promise<[Customer[], number]> {
+    return this.customersRepository.findAndCount({
+      skip: pageSize * pageIndex,
+      take: pageSize,
+    });
   }
 
   findOne(customerId: number) {
