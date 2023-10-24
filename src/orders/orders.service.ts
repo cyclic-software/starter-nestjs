@@ -61,11 +61,14 @@ export class OrdersService {
       },
       skip: pageSize * pageIndex,
       take: pageSize,
+      order: {
+        createdDate: 'DESC',
+      },
     });
   }
 
   findOne(id: number) {
-    return this.ordersRepository.find({
+    return this.ordersRepository.findOne({
       where: {
         orderId: id,
       },
