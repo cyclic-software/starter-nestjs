@@ -5,4 +5,5 @@ export class CreateOrderDto {
   customerId: number;
   taxPerctange: number;
   items: CreateOrderItemDto[];
+  orderStatus: string;
 }

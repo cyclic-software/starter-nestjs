@@ -19,6 +19,13 @@ import {
 import { OrderItem } from './orderItem.entity';
 import { Customer } from 'src/customers/entities/customer.entity';
 
+export enum OrderStatus {
+  CREATED = 'Created',
+  SHIPPED = 'Shipped',
+  DELEVERED = 'Delevered',
+  PAYMENT_RECEIVED = 'PAYMENT RECEIVED',
+}
+
 @Entity()
 export class Order {
   @PrimaryGeneratedColumn()
@@ -37,6 +44,13 @@ export class Order {
 
   @Column()
   taxPerctange: number;
+
+  @Column({
+    type: 'enum',
+    enum: OrderStatus,
+    default: OrderStatus.CREATED,
+  })
+  orderStatus: string;
 
   @Column({ type: 'decimal', precision: 10, scale: 2, default: 0 })
   grandTotal: number;
