@@ -11,7 +11,7 @@ module.exports = {
  // cacheDirectory: join(__dirname, '.cache', 'puppeteer'),
  ///tmp/hiteshkr759-starter-nestjs/.cache/puppeteer/chrome/linux-118.0.5993.70
  ///tmp/hiteshkr759-starter-nestjs/.cache/puppeteer/chrome/linux-118.0.5993.70/chrome-linux64/chrome
-  executablePath: 'tmp/hiteshkr759-starter-nestjs/.cache/puppeteer/chrome/linux-118.0.5993.70/chrome-linux64/chrome',
+ // executablePath: 'tmp/hiteshkr759-starter-nestjs/.cache/puppeteer/chrome/linux-118.0.5993.70/chrome-linux64/chrome',
   headless: 'new',
   ignoreDefaultArgs: ['--disable-extensions'],
  // downloadBaseUrl : 'https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing',

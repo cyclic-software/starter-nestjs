@@ -8,6 +8,7 @@ import { DeepPartial, In, Repository } from 'typeorm';
 import { Product } from 'src/products/entities/product.entity';
 import { OrderItem } from './entities/orderItem.entity';
 import { Customer } from 'src/customers/entities/customer.entity';
+import puppeteer from 'puppeteer';
 import type { Browser } from 'puppeteer';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -20,7 +21,7 @@ export class OrdersService {
     private customersRepository: Repository<Customer>,
     @InjectRepository(OrderItem)
     private orderItemRepository: Repository<OrderItem>,
-    @InjectBrowser() private readonly browser: Browser
+    //@InjectBrowser() private readonly browser: Browser
   ) {}
 
   async create(createOrderDto: CreateOrderDto) {
@@ -85,7 +86,8 @@ export class OrdersService {
 
   async downloadOrderPDF(id: number): Promise<Buffer> {
     console.log('Hiting the PATH for PDF');
-    const page = await this.browser.newPage();
+    const browser = await puppeteer.launch({ headless: 'new' });
+    const page = await browser.newPage();
     const downloadUrlPath = process.env.FRONT_END_PATH + '/pdf/order/' + id;
     console.log('downloadUrlPath', downloadUrlPath);
     await page.goto(downloadUrlPath, {

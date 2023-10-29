@@ -15,10 +15,10 @@ import { PuppeteerModule } from 'nest-puppeteer';
 
 @Module({
   imports: [
-    PuppeteerModule.forRoot({
-      isGlobal: true,
-      pipe: true,
-    }),
+    // PuppeteerModule.forRoot({
+    //   isGlobal: true,
+    //   pipe: true,
+    // }),
     ConfigModule.forRoot({
       isGlobal: true,
     }),
