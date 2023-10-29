@@ -23,7 +23,7 @@ export enum OrderStatus {
   CREATED = 'Created',
   SHIPPED = 'Shipped',
   DELEVERED = 'Delevered',
-  PAYMENT_RECEIVED = 'PAYMENT RECEIVED',
+  PAYMENT_RECEIVED = 'Payment Received',
 }
 
 @Entity()

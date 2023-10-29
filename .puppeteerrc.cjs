@@ -1,7 +1,5 @@
 const {join} = require('path');
-puppeteer = require('puppeteer-core');
 // console.log('TRYING TO FETCH BROWSER')
-const browserFetcher = puppeteer.createBrowserFetcher();
 // let revisionInfo = await browserFetcher.download('884014');
 
 /**
