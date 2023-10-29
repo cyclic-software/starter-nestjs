@@ -11,9 +11,13 @@ import { CustomersModule } from './customers/customers.module';
 import { SuppliersModule } from './suppliers/suppliers.module';
 import { OrdersModule } from './orders/orders.module';
 import { PurchaseOrdersModule } from './purchase-orders/purchase-orders.module';
+import { PuppeteerModule } from 'nest-puppeteer';
 
 @Module({
   imports: [
+    PuppeteerModule.forRoot({
+      isGlobal: true
+    }),
     ConfigModule.forRoot({
       isGlobal: true,
     }),

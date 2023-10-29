@@ -1,13 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
+import { InjectBrowser } from 'nest-puppeteer';
 import { Order } from './entities/order.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeepPartial, In, Repository } from 'typeorm';
 import { Product } from 'src/products/entities/product.entity';
 import { OrderItem } from './entities/orderItem.entity';
 import { Customer } from 'src/customers/entities/customer.entity';
-import puppeteer from 'puppeteer';
+import type { Browser } from 'puppeteer';
 import * as fs from 'fs';
 import * as path from 'path';
 @Injectable()
@@ -19,6 +20,7 @@ export class OrdersService {
     private customersRepository: Repository<Customer>,
     @InjectRepository(OrderItem)
     private orderItemRepository: Repository<OrderItem>,
+    @InjectBrowser() private readonly browser: Browser
   ) {}
 
   async create(createOrderDto: CreateOrderDto) {
@@ -83,12 +85,7 @@ export class OrdersService {
 
   async downloadOrderPDF(id: number): Promise<Buffer> {
     console.log('Hiting the PATH for PDF');
-    const browser = await puppeteer.launch({
-      executablePath:
-        './node_modules/puppeteer/.local-chromium/win64-656675/chrome-win/chrome.exe',
-      headless: 'new',
-    });
-    const page = await browser.newPage();
+    const page = await this.browser.newPage();
     const downloadUrlPath = process.env.FRONT_END_PATH + '/pdf/order/' + id;
     console.log('downloadUrlPath', downloadUrlPath);
     await page.goto(downloadUrlPath, {
@@ -104,7 +101,6 @@ export class OrdersService {
         bottom: '0px',
       },
     });
-    await browser.close();
     console.log('PDF Has been open and ready for serve', buffer);
     return buffer;
   }
