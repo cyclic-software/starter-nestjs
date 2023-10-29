@@ -45,4 +45,8 @@ import { PurchaseOrdersModule } from './purchase-orders/purchase-orders.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+  constructor() {
+    console.log('process.env.FRONT_END_PATH', process.env.FRONT_END_PATH);
+  }
+}

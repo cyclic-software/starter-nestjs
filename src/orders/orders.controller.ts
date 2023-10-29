@@ -35,10 +35,7 @@ export class OrdersController {
 
   @Get(':id/pdf')
   @Header('Content-Type', 'application/pdf')
-  async downloadPDF(
-    @Param('id') id: number,
-    @Res({ passthrough: true }) res: Response,
-  ) {
+  async downloadPDF(@Param('id') id: number) {
     const buffer: Buffer = await this.ordersService.downloadOrderPDF(id);
     return new StreamableFile(buffer);
 

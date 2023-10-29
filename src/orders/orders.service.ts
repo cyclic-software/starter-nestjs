@@ -100,6 +100,7 @@ export class OrdersService {
       },
     });
     await browser.close();
+    console.log('PDF Has been open and ready for serve', buffer);
     return buffer;
   }
 
