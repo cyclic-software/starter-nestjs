@@ -84,7 +84,9 @@ export class OrdersService {
   async downloadOrderPDF(id: number): Promise<Buffer> {
     const browser = await puppeteer.launch({ headless: 'new' });
     const page = await browser.newPage();
-    await page.goto(process.env.FRONT_END_PATH + '/pdf/order/' + id, {
+    const downloadUrlPath = process.env.FRONT_END_PATH + '/pdf/order/' + id;
+    console.log('downloadUrlPath', downloadUrlPath);
+    await page.goto(downloadUrlPath, {
       waitUntil: 'networkidle0',
     });
     const buffer = await page.pdf({
