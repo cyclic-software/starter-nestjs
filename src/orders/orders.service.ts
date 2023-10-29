@@ -83,7 +83,11 @@ export class OrdersService {
 
   async downloadOrderPDF(id: number): Promise<Buffer> {
     console.log('Hiting the PATH for PDF');
-    const browser = await puppeteer.launch({ headless: 'new' });
+    const browser = await puppeteer.launch({
+      executablePath:
+        './node_modules/puppeteer/.local-chromium/win64-656675/chrome-win/chrome.exe',
+      headless: 'new',
+    });
     const page = await browser.newPage();
     const downloadUrlPath = process.env.FRONT_END_PATH + '/pdf/order/' + id;
     console.log('downloadUrlPath', downloadUrlPath);
