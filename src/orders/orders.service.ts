@@ -10,7 +10,6 @@ import { Customer } from 'src/customers/entities/customer.entity';
 import puppeteer from 'puppeteer';
 import * as fs from 'fs';
 import * as path from 'path';
-
 @Injectable()
 export class OrdersService {
   constructor(
@@ -83,21 +82,11 @@ export class OrdersService {
   }
 
   async downloadOrderPDF(id: number): Promise<Buffer> {
-    // const content = fs.readFileSync(
-    //   path.resolve(__dirname, '../client/orders/10/detail'),
-    //   'utf-8',
-    // );
-
     const browser = await puppeteer.launch({ headless: 'new' });
     const page = await browser.newPage();
-    await page.goto('http://localhost:3000/orders/' + id + '/detail', {
+    await page.goto(process.env.FRONT_END_PATH + '/pdf/order/' + id, {
       waitUntil: 'networkidle0',
     });
-    //await page.goto('https://ticker.finology.in/tickerplus');
-    // await page.goto('http://localhost:3000/orders/10/detail',{
-    //   waitUntil: 'networkidle0',
-    // });
-
     const buffer = await page.pdf({
       format: 'A4',
       printBackground: true,
