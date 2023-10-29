@@ -7,10 +7,14 @@ import {
   Param,
   Delete,
   Query,
+  Res,
+  Header,
+  StreamableFile,
 } from '@nestjs/common';
 import { OrdersService } from './orders.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
+import { createReadStream } from 'fs';
 
 @Controller('orders')
 export class OrdersController {
@@ -26,7 +30,44 @@ export class OrdersController {
     @Query('pageIndex') pageIndex: number,
     @Query('pageSize') pageSize: number,
   ) {
-    return this.ordersService.findAll({pageIndex,pageSize});
+    return this.ordersService.findAll({ pageIndex, pageSize });
+  }
+
+  @Get(':id/pdf')
+  @Header('Content-Type', 'application/pdf')
+  async downloadPDF(
+    @Param('id') id: number,
+    @Res({ passthrough: true }) res: Response,
+  ) {
+    const buffer: Buffer = await this.ordersService.downloadOrderPDF(id);
+    return new StreamableFile(buffer);
+
+    // res.set({
+    //   // pdf
+    //   'Content-Type': 'application/pdf',
+    //   'Content-Disposition': 'attachment; filename=invoice.pdf',
+    //   'Content-Length': buffer.length,
+
+    //   // prevent cache
+    //   'Cache-Control': 'no-cache, no-store, must-revalidate',
+    //   Pragma: 'no-cache',
+    //   Expires: 0,
+    // });
+
+    // // res.end(buffer)
+
+    // res.set({
+    //   'Content-Type': 'application/pdf',
+    //   'Content-Disposition': 'attachment; filename=invoice.pdf',
+    //   'Content-Length': buffer.length,
+
+    //   // prevent cache
+    //   'Cache-Control': 'no-cache, no-store, must-revalidate',
+    //   Pragma: 'no-cache',
+    //   Expires: 0,
+    // })
+
+    // return buffer;
   }
 
   @Get(':id')

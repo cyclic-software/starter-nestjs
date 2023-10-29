@@ -7,6 +7,9 @@ import { DeepPartial, In, Repository } from 'typeorm';
 import { Product } from 'src/products/entities/product.entity';
 import { OrderItem } from './entities/orderItem.entity';
 import { Customer } from 'src/customers/entities/customer.entity';
+import puppeteer from 'puppeteer';
+import * as fs from 'fs';
+import * as path from 'path';
 
 @Injectable()
 export class OrdersService {
@@ -77,6 +80,36 @@ export class OrdersService {
         customerId: true,
       },
     });
+  }
+
+  async downloadOrderPDF(id: number): Promise<Buffer> {
+    // const content = fs.readFileSync(
+    //   path.resolve(__dirname, '../client/orders/10/detail'),
+    //   'utf-8',
+    // );
+
+    const browser = await puppeteer.launch({ headless: 'new' });
+    const page = await browser.newPage();
+    await page.goto('http://localhost:3000/orders/' + id + '/detail', {
+      waitUntil: 'networkidle0',
+    });
+    //await page.goto('https://ticker.finology.in/tickerplus');
+    // await page.goto('http://localhost:3000/orders/10/detail',{
+    //   waitUntil: 'networkidle0',
+    // });
+
+    const buffer = await page.pdf({
+      format: 'A4',
+      printBackground: true,
+      margin: {
+        left: '0px',
+        top: '0px',
+        right: '0px',
+        bottom: '0px',
+      },
+    });
+    await browser.close();
+    return buffer;
   }
 
   async update(orderId: number, updateOrder: any) {
