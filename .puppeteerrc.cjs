@@ -11,6 +11,7 @@ module.exports = {
   // Changes the cache location for Puppeteer.
   cacheDirectory: join(__dirname, '.cache', 'puppeteer'),
   //executablePath: revisionInfo.executablePath,
-  headless:false,
+  headless: 'new',
+  downloadBaseUrl : 'https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing',
   args:  ["--no-sandbox", "--disabled-setupid-sandbox"],
 };
