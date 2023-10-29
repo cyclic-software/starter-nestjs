@@ -5,6 +5,7 @@
   "description": "Nest TypeScript starter repository",
   "license": "MIT",
   "scripts": {
+    "preinstall": "rm -r node_modules/",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start:dev": "nest start --watch",
