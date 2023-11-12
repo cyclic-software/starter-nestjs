@@ -26,6 +26,7 @@
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/serve-static": "^4.0.0",
     "@nestjs/typeorm": "^10.0.0",
+    "messagebird": "^4.0.1",
     "nest-puppeteer": "^1.1.1",
     "pg": "^8.11.3",
     "puppeteer": "^21.4.1",

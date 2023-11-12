@@ -20,8 +20,7 @@ export class OrdersService {
     @InjectRepository(Customer)
     private customersRepository: Repository<Customer>,
     @InjectRepository(OrderItem)
-    private orderItemRepository: Repository<OrderItem>,
-    //@InjectBrowser() private readonly browser: Browser
+    private orderItemRepository: Repository<OrderItem>, //@InjectBrowser() private readonly browser: Browser
   ) {}
 
   async create(createOrderDto: CreateOrderDto) {
@@ -58,7 +57,8 @@ export class OrdersService {
     return this.ordersRepository.save(order);
   }
 
-  findAll({ pageSize, pageIndex }): Promise<[Order[], number]> {
+  findAll(page, where): Promise<[Order[], number]> {
+    const { pageSize, pageIndex } = page;
     return this.ordersRepository.findAndCount({
       relations: {
         items: true,
@@ -69,8 +69,11 @@ export class OrdersService {
       order: {
         createdDate: 'DESC',
       },
+      where,
     });
   }
+
+ 
 
   findOne(id: number) {
     return this.ordersRepository.findOne({
@@ -83,10 +86,15 @@ export class OrdersService {
       },
     });
   }
+  
+
 
   async downloadOrderPDF(id: number): Promise<Buffer> {
     console.log('Hiting the PATH for PDF');
-    const browser = await puppeteer.launch({ headless: 'new' });
+    const browser = await puppeteer.launch({
+      headless: 'new',
+      executablePath: '',
+    });
     const page = await browser.newPage();
     const downloadUrlPath = process.env.FRONT_END_PATH + '/pdf/order/' + id;
     console.log('downloadUrlPath', downloadUrlPath);

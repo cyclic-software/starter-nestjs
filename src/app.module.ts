@@ -12,6 +12,8 @@ import { SuppliersModule } from './suppliers/suppliers.module';
 import { OrdersModule } from './orders/orders.module';
 import { PurchaseOrdersModule } from './purchase-orders/purchase-orders.module';
 import { PuppeteerModule } from 'nest-puppeteer';
+import { WhatsappController } from './whatsapp/whatsapp.controller';
+import { OrdersService } from './orders/orders.service';
 
 @Module({
   imports: [
@@ -47,7 +49,7 @@ import { PuppeteerModule } from 'nest-puppeteer';
     OrdersModule,
     PurchaseOrdersModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, WhatsappController],
   providers: [AppService],
 })
 export class AppModule {

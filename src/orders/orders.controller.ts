@@ -18,6 +18,7 @@ import { createReadStream } from 'fs';
 
 @Controller('orders')
 export class OrdersController {
+  
   constructor(private readonly ordersService: OrdersService) {}
 
   @Post()
@@ -27,10 +28,20 @@ export class OrdersController {
 
   @Get()
   findAll(
-    @Query('pageIndex') pageIndex: number,
-    @Query('pageSize') pageSize: number,
+    // @Query('pageIndex') pageIndex: number,
+    // @Query('pageSize') pageSize: number,
+    @Query() query: any,
   ) {
-    return this.ordersService.findAll({ pageIndex, pageSize });
+    // const pageConfig = {
+    //   pageIndex,
+    //   pageSize
+    // }
+    // const where = {
+
+    // }
+    const { pageIndex, pageSize, ...where } = query;
+    const page = { pageIndex, pageSize };
+    return this.ordersService.findAll(page, where);
   }
 
   @Get(':id/pdf')

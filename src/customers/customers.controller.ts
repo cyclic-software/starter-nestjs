@@ -22,11 +22,10 @@ export class CustomersController {
   }
 
   @Get()
-  findAll(
-    @Query('pageIndex') pageIndex: number,
-    @Query('pageSize') pageSize: number,
-  ) {
-    return this.customersService.findAll({ pageIndex, pageSize });
+  findAll(@Query() query: any) {
+    const { pageIndex, pageSize, ...where } = query;
+    const page = { pageIndex, pageSize };
+    return this.customersService.findAll(page,where);
   }
 
   @Get('/search/:searchKey')
@@ -37,6 +36,13 @@ export class CustomersController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.customersService.findOne(+id);
+  }
+
+  @Get(':id/orders')
+  findOrdersForCustomerId(@Param('id') id: number, @Query() query) {
+    const { pageIndex, pageSize, ...where } = query;
+    const page = { pageIndex, pageSize };
+    return this.customersService.findAllOrdersByCustomerId(id, page, where);
   }
 
   @Patch(':id')
