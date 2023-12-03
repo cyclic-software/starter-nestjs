@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  postgres:
+    container_name: postgres-absensi
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    volumes:
+      - pg_data:/var/folders/postgres:/data/postgres
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    networks:
+      - postgres
+
+networks:
+  postgres:
+    driver: bridge
+volumes:
+  pg_data:
