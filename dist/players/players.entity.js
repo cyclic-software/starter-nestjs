@@ -16,7 +16,7 @@ let PlayersEntity = class PlayersEntity {
 };
 exports.PlayersEntity = PlayersEntity;
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)(),
+    (0, typeorm_1.PrimaryColumn)({ type: "int" }),
     __metadata("design:type", Number)
 ], PlayersEntity.prototype, "id_player", void 0);
 __decorate([
@@ -24,17 +24,9 @@ __decorate([
     __metadata("design:type", String)
 ], PlayersEntity.prototype, "name", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: false, length: 32, type: "varchar" }),
+    (0, typeorm_1.Column)({ type: "varchar", length: "256" }),
     __metadata("design:type", String)
-], PlayersEntity.prototype, "id_stargg", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ nullable: false, length: 128, type: "varchar" }),
-    __metadata("design:type", String)
-], PlayersEntity.prototype, "aboutme", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ type: "int", nullable: false }),
-    __metadata("design:type", Number)
-], PlayersEntity.prototype, "master_card_ki", void 0);
+], PlayersEntity.prototype, "picture", void 0);
 __decorate([
     (0, typeorm_1.OneToMany)(() => results_entity_1.ResultsEntity, (result) => result.player),
     __metadata("design:type", Array)

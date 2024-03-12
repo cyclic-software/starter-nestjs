@@ -1,13 +1,17 @@
+import { formats } from "src/config/constants";
 import { ResultsEntity } from "src/results/results.entity";
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({
     name: "tbl_tournament_nrex"
 })
 export class TournamentEntity{
     
-    @PrimaryGeneratedColumn()
+    @PrimaryColumn()
     id_tournament: number
+
+    @Column({type: "int", unique: true, nullable:false})
+    stargg_tourney: number
 
     @Column({type: "varchar", length: 64})
     name: string
@@ -17,6 +21,9 @@ export class TournamentEntity{
 
     @Column({type: "varchar", length: 64 })
     date: String
+
+    @Column({type : "enum", enum: formats, default: formats.DuelLinks})
+    format: formats
 
     @OneToMany(()=>ResultsEntity, (results)=> results.tournament)
     results : ResultsEntity[]

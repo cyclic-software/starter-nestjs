@@ -10,15 +10,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TournamentEntity = void 0;
+const constants_1 = require("../config/constants");
 const results_entity_1 = require("../results/results.entity");
 const typeorm_1 = require("typeorm");
 let TournamentEntity = class TournamentEntity {
 };
 exports.TournamentEntity = TournamentEntity;
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)(),
+    (0, typeorm_1.PrimaryColumn)(),
     __metadata("design:type", Number)
 ], TournamentEntity.prototype, "id_tournament", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: "int", unique: true, nullable: false }),
+    __metadata("design:type", Number)
+], TournamentEntity.prototype, "stargg_tourney", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: "varchar", length: 64 }),
     __metadata("design:type", String)
@@ -31,6 +36,10 @@ __decorate([
     (0, typeorm_1.Column)({ type: "varchar", length: 64 }),
     __metadata("design:type", String)
 ], TournamentEntity.prototype, "date", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: "enum", enum: constants_1.formats, default: constants_1.formats.DuelLinks }),
+    __metadata("design:type", String)
+], TournamentEntity.prototype, "format", void 0);
 __decorate([
     (0, typeorm_1.OneToMany)(() => results_entity_1.ResultsEntity, (results) => results.tournament),
     __metadata("design:type", Array)

@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ResultsEntity = void 0;
+const constants_1 = require("../config/constants");
 const players_entity_1 = require("../players/players.entity");
 const tournament_entity_1 = require("../tournament/tournament.entity");
 const typeorm_1 = require("typeorm");
@@ -28,6 +29,10 @@ __decorate([
     (0, typeorm_1.Column)({ name: 'id_tournament_fk' }),
     __metadata("design:type", Number)
 ], ResultsEntity.prototype, "id_tournament_fk", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: "enum", enum: constants_1.formats, default: constants_1.formats.DuelLinks }),
+    __metadata("design:type", String)
+], ResultsEntity.prototype, "format", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: "int" }),
     __metadata("design:type", Number)

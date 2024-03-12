@@ -30,6 +30,10 @@ export class ResultsService {
         return await this.tornamentRepository.save(nuevo);
     }
 
+    async createBulk(nuevo: ResultsEntity[]): Promise<ResultsEntity[]> {
+        return await this.tornamentRepository.save(nuevo);
+    }
+
     async update(id_result, nuevo: ResultsEntity): Promise<UpdateResult> {
         return await this.tornamentRepository.update(id_result, nuevo);
     }

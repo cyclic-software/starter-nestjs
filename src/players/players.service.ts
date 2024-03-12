@@ -23,6 +23,11 @@ export class PlayersService {
         return await this.playersRepository.save(nuevo);
     }
 
+    async createBulk(nuevo: PlayersEntity[]): Promise<PlayersEntity[]> {
+        return await this.playersRepository.save(nuevo);
+    }
+
+
     async update(id_player, nuevo: PlayersEntity): Promise<UpdateResult> {
         return await this.playersRepository.update(id_player, nuevo);
     }

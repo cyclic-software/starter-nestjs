@@ -17,12 +17,25 @@ const common_1 = require("@nestjs/common");
 const common_2 = require("@nestjs/common");
 const tournament_service_1 = require("./tournament.service");
 const tournament_entity_1 = require("./tournament.entity");
+const roles_decorator_1 = require("../roles/roles.decorator");
+const auth_guard_1 = require("../auth/auth.guard");
+const roles_guard_1 = require("../roles/roles.guard");
+const role_enum_1 = require("../roles/role.enum");
 let TournamentController = class TournamentController {
     constructor(tournamentService) {
         this.tournamentService = tournamentService;
     }
     get() {
         return this.tournamentService.findAll()
+            .then(res => {
+            return res;
+        })
+            .catch(error => {
+            throw new common_2.HttpException(error, common_2.HttpStatus.INTERNAL_SERVER_ERROR);
+        });
+    }
+    getbyID(id) {
+        return this.tournamentService.findById(id)
             .then(res => {
             return res;
         })
@@ -66,6 +79,15 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], TournamentController.prototype, "get", null);
 __decorate([
+    (0, common_2.Get)('/:id'),
+    __param(0, (0, common_2.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", void 0)
+], TournamentController.prototype, "getbyID", null);
+__decorate([
+    (0, common_1.UseGuards)(auth_guard_1.AuthGuard, roles_guard_1.RolesGuard),
+    (0, roles_decorator_1.Roles)([role_enum_1.Role.ADMIN, role_enum_1.Role.GOD]),
     (0, common_2.Post)(),
     __param(0, (0, common_2.Body)()),
     __metadata("design:type", Function),
@@ -73,15 +95,19 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], TournamentController.prototype, "save", null);
 __decorate([
+    (0, common_1.UseGuards)(auth_guard_1.AuthGuard, roles_guard_1.RolesGuard),
+    (0, roles_decorator_1.Roles)([role_enum_1.Role.ADMIN, role_enum_1.Role.GOD]),
     (0, common_2.Post)('/update/:id'),
-    __param(0, (0, common_2.Param)()),
+    __param(0, (0, common_2.Param)("id")),
     __param(1, (0, common_2.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, tournament_entity_1.TournamentEntity]),
     __metadata("design:returntype", void 0)
 ], TournamentController.prototype, "update", null);
 __decorate([
-    (0, common_2.Get)('delete/:id'),
+    (0, common_1.UseGuards)(auth_guard_1.AuthGuard, roles_guard_1.RolesGuard),
+    (0, roles_decorator_1.Roles)([role_enum_1.Role.ADMIN, role_enum_1.Role.GOD]),
+    (0, common_2.Get)('/delete/:id'),
     __param(0, (0, common_2.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),

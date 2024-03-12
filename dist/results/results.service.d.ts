@@ -8,6 +8,7 @@ export declare class ResultsService {
     findByTournament(id_tournament_fk: number): Promise<ResultsEntity[]>;
     findByPlayer(id_player_fk: number): Promise<ResultsEntity[]>;
     create(nuevo: ResultsEntity): Promise<ResultsEntity>;
+    createBulk(nuevo: ResultsEntity[]): Promise<ResultsEntity[]>;
     update(id_result: any, nuevo: ResultsEntity): Promise<UpdateResult>;
     delete(id_result: number): Promise<string>;
 }

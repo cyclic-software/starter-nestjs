@@ -17,6 +17,10 @@ const common_1 = require("@nestjs/common");
 const common_2 = require("@nestjs/common");
 const tierlistt_service_1 = require("./tierlistt.service");
 const tierlist_entity_1 = require("./tierlist.entity");
+const auth_guard_1 = require("../auth/auth.guard");
+const roles_guard_1 = require("../roles/roles.guard");
+const role_enum_1 = require("../roles/role.enum");
+const roles_decorator_1 = require("../roles/roles.decorator");
 let TierlistController = class TierlistController {
     constructor(tierlistService) {
         this.tierlistService = tierlistService;
@@ -66,6 +70,8 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], TierlistController.prototype, "get", null);
 __decorate([
+    (0, common_1.UseGuards)(auth_guard_1.AuthGuard, roles_guard_1.RolesGuard),
+    (0, roles_decorator_1.Roles)([role_enum_1.Role.ADMIN, role_enum_1.Role.GOD]),
     (0, common_2.Post)(),
     __param(0, (0, common_2.Body)()),
     __metadata("design:type", Function),
@@ -73,6 +79,8 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], TierlistController.prototype, "save", null);
 __decorate([
+    (0, common_1.UseGuards)(auth_guard_1.AuthGuard, roles_guard_1.RolesGuard),
+    (0, roles_decorator_1.Roles)([role_enum_1.Role.ADMIN, role_enum_1.Role.GOD]),
     (0, common_2.Post)('/update/:id'),
     __param(0, (0, common_2.Param)('id')),
     __param(1, (0, common_2.Body)()),
@@ -81,6 +89,8 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], TierlistController.prototype, "update", null);
 __decorate([
+    (0, common_1.UseGuards)(auth_guard_1.AuthGuard, roles_guard_1.RolesGuard),
+    (0, roles_decorator_1.Roles)([role_enum_1.Role.ADMIN, role_enum_1.Role.GOD]),
     (0, common_2.Get)('/delete/:id'),
     __param(0, (0, common_2.Param)('id')),
     __metadata("design:type", Function),

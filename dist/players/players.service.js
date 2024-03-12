@@ -30,6 +30,9 @@ let PlayersService = class PlayersService {
     async create(nuevo) {
         return await this.playersRepository.save(nuevo);
     }
+    async createBulk(nuevo) {
+        return await this.playersRepository.save(nuevo);
+    }
     async update(id_player, nuevo) {
         return await this.playersRepository.update(id_player, nuevo);
     }

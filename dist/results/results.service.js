@@ -36,6 +36,9 @@ let ResultsService = class ResultsService {
     async create(nuevo) {
         return await this.tornamentRepository.save(nuevo);
     }
+    async createBulk(nuevo) {
+        return await this.tornamentRepository.save(nuevo);
+    }
     async update(id_result, nuevo) {
         return await this.tornamentRepository.update(id_result, nuevo);
     }

@@ -17,6 +17,10 @@ const common_1 = require("@nestjs/common");
 const common_2 = require("@nestjs/common");
 const banlist_service_1 = require("./banlist.service");
 const banlist_entity_1 = require("./banlist.entity");
+const role_enum_1 = require("../roles/role.enum");
+const roles_decorator_1 = require("../roles/roles.decorator");
+const auth_guard_1 = require("../auth/auth.guard");
+const roles_guard_1 = require("../roles/roles.guard");
 let BanlistController = class BanlistController {
     constructor(banlistService) {
         this.banlistService = banlistService;
@@ -66,6 +70,8 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], BanlistController.prototype, "get", null);
 __decorate([
+    (0, common_1.UseGuards)(auth_guard_1.AuthGuard, roles_guard_1.RolesGuard),
+    (0, roles_decorator_1.Roles)([role_enum_1.Role.ADMIN, role_enum_1.Role.GOD]),
     (0, common_2.Post)(),
     __param(0, (0, common_2.Body)()),
     __metadata("design:type", Function),
@@ -73,6 +79,8 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], BanlistController.prototype, "save", null);
 __decorate([
+    (0, common_1.UseGuards)(auth_guard_1.AuthGuard, roles_guard_1.RolesGuard),
+    (0, roles_decorator_1.Roles)([role_enum_1.Role.ADMIN, role_enum_1.Role.GOD]),
     (0, common_2.Post)('/update/:id_ban'),
     __param(0, (0, common_2.Param)('id_ban')),
     __param(1, (0, common_2.Body)()),
@@ -81,6 +89,8 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], BanlistController.prototype, "update", null);
 __decorate([
+    (0, common_1.UseGuards)(auth_guard_1.AuthGuard, roles_guard_1.RolesGuard),
+    (0, roles_decorator_1.Roles)([role_enum_1.Role.ADMIN, role_enum_1.Role.GOD]),
     (0, common_2.Get)('/delete/:id'),
     __param(0, (0, common_2.Param)('id')),
     __metadata("design:type", Function),

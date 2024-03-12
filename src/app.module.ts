@@ -12,6 +12,10 @@ import { BanlistModule } from './banlist/banlist.module';
 import { ResultsModule } from './results/results.module';
 import { PlayersModule } from './players/players.module';
 import { TierlistModule } from './tierlist/tierlist.module';
+import { ResultsViewModule } from './resultsView/resultsView.module';
+import { PlayersScoreViewModule } from './playersScoreView/playersScoreView.module';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -19,7 +23,11 @@ import { TierlistModule } from './tierlist/tierlist.module';
     BanlistModule,
     ResultsModule,
     PlayersModule,
-    TierlistModule,        
+    TierlistModule,  
+    ResultsViewModule, 
+    PlayersScoreViewModule,
+    AuthModule,     
+    UsersModule,
     ConfigModule.forRoot({
       envFilePath:'.env',
       isGlobal:true

@@ -1,3 +1,4 @@
+import { formats } from "src/config/constants";
 import { Entity } from "typeorm";
 import { Column,  PrimaryGeneratedColumn } from "typeorm";
 
@@ -19,8 +20,8 @@ export class TierlistEntity{
     @Column({type:"enum", enum: ["Tier 0","Tier 1","Tier 2","Tier 3"]})
     category: string
 
-    @Column({type : "enum", enum: ["Master Duel", "Duel Links"]})
-    format: string
+    @Column({type : "enum", enum: formats, default: formats.DuelLinks})
+    format: formats
 
     @Column({type:"varchar",  length: 12 })
     date: string

@@ -17,6 +17,10 @@ const common_1 = require("@nestjs/common");
 const common_2 = require("@nestjs/common");
 const results_service_1 = require("./results.service");
 const results_entity_1 = require("./results.entity");
+const roles_decorator_1 = require("../roles/roles.decorator");
+const role_enum_1 = require("../roles/role.enum");
+const roles_guard_1 = require("../roles/roles.guard");
+const auth_guard_1 = require("../auth/auth.guard");
 let ResultsController = class ResultsController {
     constructor(resultsService) {
         this.resultsService = resultsService;
@@ -33,7 +37,7 @@ let ResultsController = class ResultsController {
     getByTournament(id) {
         return this.resultsService.findByTournament(id)
             .then(res => {
-            return { succes: true, data: res };
+            return res;
         })
             .catch(error => {
             throw new common_2.HttpException(error, common_2.HttpStatus.INTERNAL_SERVER_ERROR);
@@ -42,7 +46,7 @@ let ResultsController = class ResultsController {
     getByPlayer(id) {
         return this.resultsService.findByPlayer(id)
             .then(res => {
-            return { succes: true, data: res };
+            return res;
         })
             .catch(error => {
             throw new common_2.HttpException(error, common_2.HttpStatus.INTERNAL_SERVER_ERROR);
@@ -50,6 +54,15 @@ let ResultsController = class ResultsController {
     }
     save(nuevo) {
         return this.resultsService.create(nuevo)
+            .then(res => {
+            return { sucess: true, data: res };
+        })
+            .catch(error => {
+            throw new common_2.HttpException(error, common_2.HttpStatus.INTERNAL_SERVER_ERROR);
+        });
+    }
+    saveBulk(nuevo) {
+        return this.resultsService.createBulk(nuevo)
             .then(res => {
             return { sucess: true, data: res };
         })
@@ -98,6 +111,8 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ResultsController.prototype, "getByPlayer", null);
 __decorate([
+    (0, common_1.UseGuards)(auth_guard_1.AuthGuard, roles_guard_1.RolesGuard),
+    (0, roles_decorator_1.Roles)([role_enum_1.Role.ADMIN, role_enum_1.Role.GOD]),
     (0, common_2.Post)(),
     __param(0, (0, common_2.Body)()),
     __metadata("design:type", Function),
@@ -105,6 +120,17 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ResultsController.prototype, "save", null);
 __decorate([
+    (0, common_1.UseGuards)(auth_guard_1.AuthGuard, roles_guard_1.RolesGuard),
+    (0, roles_decorator_1.Roles)([role_enum_1.Role.ADMIN, role_enum_1.Role.GOD]),
+    (0, common_2.Post)('/bulk'),
+    __param(0, (0, common_2.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Array]),
+    __metadata("design:returntype", void 0)
+], ResultsController.prototype, "saveBulk", null);
+__decorate([
+    (0, common_1.UseGuards)(auth_guard_1.AuthGuard, roles_guard_1.RolesGuard),
+    (0, roles_decorator_1.Roles)([role_enum_1.Role.ADMIN, role_enum_1.Role.GOD]),
     (0, common_2.Post)('/update/:id'),
     __param(0, (0, common_2.Param)("id")),
     __param(1, (0, common_2.Body)()),
@@ -113,6 +139,8 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ResultsController.prototype, "update", null);
 __decorate([
+    (0, common_1.UseGuards)(auth_guard_1.AuthGuard, roles_guard_1.RolesGuard),
+    (0, roles_decorator_1.Roles)([role_enum_1.Role.ADMIN, role_enum_1.Role.GOD]),
     (0, common_2.Get)('/delete/:id'),
     __param(0, (0, common_2.Param)('id')),
     __metadata("design:type", Function),

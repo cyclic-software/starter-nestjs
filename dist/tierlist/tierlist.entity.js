@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TierlistEntity = void 0;
+const constants_1 = require("../config/constants");
 const typeorm_1 = require("typeorm");
 const typeorm_2 = require("typeorm");
 let TierlistEntity = class TierlistEntity {
@@ -32,7 +33,7 @@ __decorate([
     __metadata("design:type", String)
 ], TierlistEntity.prototype, "category", void 0);
 __decorate([
-    (0, typeorm_2.Column)({ type: "enum", enum: ["Master Duel", "Duel Links"] }),
+    (0, typeorm_2.Column)({ type: "enum", enum: constants_1.formats, default: constants_1.formats.DuelLinks }),
     __metadata("design:type", String)
 ], TierlistEntity.prototype, "format", void 0);
 __decorate([

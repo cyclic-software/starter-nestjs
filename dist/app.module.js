@@ -18,6 +18,10 @@ const banlist_module_1 = require("./banlist/banlist.module");
 const results_module_1 = require("./results/results.module");
 const players_module_1 = require("./players/players.module");
 const tierlist_module_1 = require("./tierlist/tierlist.module");
+const resultsView_module_1 = require("./resultsView/resultsView.module");
+const playersScoreView_module_1 = require("./playersScoreView/playersScoreView.module");
+const auth_module_1 = require("./auth/auth.module");
+const users_module_1 = require("./users/users.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -29,6 +33,10 @@ exports.AppModule = AppModule = __decorate([
             results_module_1.ResultsModule,
             players_module_1.PlayersModule,
             tierlist_module_1.TierlistModule,
+            resultsView_module_1.ResultsViewModule,
+            playersScoreView_module_1.PlayersScoreViewModule,
+            auth_module_1.AuthModule,
+            users_module_1.UsersModule,
             config_1.ConfigModule.forRoot({
                 envFilePath: '.env',
                 isGlobal: true
