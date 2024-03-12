@@ -1,3 +1,4 @@
+import { formats } from "src/config/constants";
 import { Entity } from "typeorm";
 import { Column,  PrimaryGeneratedColumn } from "typeorm";
 
@@ -7,6 +8,7 @@ import { Column,  PrimaryGeneratedColumn } from "typeorm";
 })
 export class BanlistEntity{
 
+ 
     @PrimaryGeneratedColumn()
     id_ban:number
 
@@ -19,7 +21,7 @@ export class BanlistEntity{
     @Column({type:"enum", enum: ["forbidden","limited","semi-limited","semi-released","released"]})
     limitation: string
 
-    @Column({type : "enum", enum: ["Master Duel", "Duel Links"]})
+    @Column({type : "enum", enum: formats, default: formats.DuelLinks})
     format: string
 
     @Column({type:"varchar",  length: 12 })
