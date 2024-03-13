@@ -10,9 +10,6 @@ export class TournamentEntity{
     @PrimaryColumn()
     id_tournament: number
 
-    @Column({type: "int", unique: true, nullable:false})
-    stargg_tourney: number
-
     @Column({type: "varchar", length: 64})
     name: string
 
