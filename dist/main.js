@@ -8,9 +8,10 @@ async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule, { cors: true });
     app.enableCors({
         origin: ["http://nrex-league.x10.mx"],
-        methods: ["GET", "POST", "PUT", "DELETE"],
-        preflightContinue: true
+        methods: ["GET", "POST"],
+        credentials: true
     });
+    app.enableCors();
     const configService = app.get(config_1.ConfigService);
     const port = configService.get(constants_1.SERVER_PORT);
     await app.listen(port);
