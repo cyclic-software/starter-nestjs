@@ -5,7 +5,7 @@ import { ConfigService } from '@nestjs/config';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {cors: true});
   app.enableCors({
-    origin: ["http://nrex-league.x10.mx"],
+    origin: ["http://formato-nr.x10.mx"],
     methods: ["GET", "POST"],
     credentials: true
     
