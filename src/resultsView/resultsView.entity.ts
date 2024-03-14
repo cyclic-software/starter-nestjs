@@ -10,6 +10,7 @@ import {  ViewColumn, ViewEntity } from "typeorm";
         t.id_tournament AS "id_tournament",
         p.name AS "player_name",
         p.picture AS "picture",
+        t.picture AS "t_picture",
         t.name AS "tournament_name",
         r.place AS "place",
         r.points AS "points",
@@ -36,6 +37,9 @@ export class ResultsViewEntity{
 
     @ViewColumn()
     picture: string
+
+    @ViewColumn()
+    t_picture: string
 
     @ViewColumn()
     tournament_name : string

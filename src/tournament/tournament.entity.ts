@@ -10,6 +10,9 @@ export class TournamentEntity{
     @PrimaryColumn()
     id_tournament: number
 
+    @Column({type: "varchar", length: "256"})
+    picture: string
+
     @Column({type: "varchar", length: 64})
     name: string
 
