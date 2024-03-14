@@ -14,7 +14,8 @@ let AppService = class AppService {
     }
 };
 exports.AppService = AppService;
-exports.AppService = AppService = __decorate([
-    (0, common_1.Injectable)()
-], AppService);
+exports.TypeormService = TypeormService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [])
+], TypeormService);
 //# sourceMappingURL=app.service.js.map
