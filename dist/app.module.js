@@ -37,10 +37,6 @@ exports.AppModule = AppModule = __decorate([
             playersScoreView_module_1.PlayersScoreViewModule,
             auth_module_1.AuthModule,
             users_module_1.UsersModule,
-            config_1.ConfigModule.forRoot({
-                envFilePath: '.env',
-                isGlobal: true
-            }),
             typeorm_1.TypeOrmModule.forRootAsync({
                 useClass: typeorm_service_1.TypeormService
             })
