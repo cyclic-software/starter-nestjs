@@ -6,7 +6,7 @@ const config_1 = require("@nestjs/config");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule, { cors: true });
     app.enableCors({
-        origin: "*",
+        origin: "format-nr.x10.mx",
         methods: ["GET", "POST"],
         credentials: true
     });
