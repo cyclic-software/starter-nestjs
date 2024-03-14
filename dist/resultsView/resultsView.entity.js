@@ -34,6 +34,10 @@ __decorate([
 __decorate([
     (0, typeorm_1.ViewColumn)(),
     __metadata("design:type", String)
+], ResultsViewEntity.prototype, "t_picture", void 0);
+__decorate([
+    (0, typeorm_1.ViewColumn)(),
+    __metadata("design:type", String)
 ], ResultsViewEntity.prototype, "tournament_name", void 0);
 __decorate([
     (0, typeorm_1.ViewColumn)(),
@@ -56,6 +60,7 @@ exports.ResultsViewEntity = ResultsViewEntity = __decorate([
         t.id_tournament AS "id_tournament",
         p.name AS "player_name",
         p.picture AS "picture",
+        t.picture AS "t_picture",
         t.name AS "tournament_name",
         r.place AS "place",
         r.points AS "points",

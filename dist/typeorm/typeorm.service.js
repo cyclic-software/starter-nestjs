@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TypeormService = void 0;
 const common_1 = require("@nestjs/common");
 const config_1 = require("@nestjs/config");
-const constants_1 = require("../config/constants");
 let TypeormService = class TypeormService {
     constructor(configService) {
         this.configService = configService;
@@ -20,11 +19,11 @@ let TypeormService = class TypeormService {
     createTypeOrmOptions() {
         return {
             type: 'mysql',
-            host: this.configService.get(constants_1.DB_HOST),
-            port: this.configService.get(constants_1.DB_PORT),
-            username: this.configService.get(constants_1.DB_USERNAME),
-            password: this.configService.get(constants_1.DB_PASSWORD),
-            database: this.configService.get(constants_1.DB_DATABASE),
+            host: process.env.DB_HOST,
+            port: Number(process.env.DB_PORT),
+            username: process.env.DB_USERNAME,
+            password: process.env.DB_PASSWORD,
+            database: process.env.DB_DATABASE,
             entities: [__dirname + '/../**/*.entity{.js,.ts}'],
             synchronize: true,
             logging: true

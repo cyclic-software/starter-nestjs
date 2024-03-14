@@ -4,6 +4,7 @@ export declare class ResultsViewEntity {
     id_tournament: number;
     player_name: string;
     picture: string;
+    t_picture: string;
     tournament_name: string;
     place: number;
     points: number;
