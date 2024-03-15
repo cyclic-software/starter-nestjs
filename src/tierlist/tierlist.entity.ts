@@ -14,8 +14,8 @@ export class TierlistEntity{
     @Column({type: "varchar", length: 64})
     name : string
 
-    @Column({type: "int"})
-    konami_id: number
+    @Column({type: "varchar", length:192})
+    url: string
 
     @Column({type:"enum", enum: ["Tier 0","Tier 1","Tier 2","Tier 3"]})
     category: string
