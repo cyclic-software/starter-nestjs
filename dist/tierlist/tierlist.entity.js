@@ -25,9 +25,9 @@ __decorate([
     __metadata("design:type", String)
 ], TierlistEntity.prototype, "name", void 0);
 __decorate([
-    (0, typeorm_2.Column)({ type: "int" }),
-    __metadata("design:type", Number)
-], TierlistEntity.prototype, "konami_id", void 0);
+    (0, typeorm_2.Column)({ type: "varchar", length: 192 }),
+    __metadata("design:type", String)
+], TierlistEntity.prototype, "url", void 0);
 __decorate([
     (0, typeorm_2.Column)({ type: "enum", enum: ["Tier 0", "Tier 1", "Tier 2", "Tier 3"] }),
     __metadata("design:type", String)
