@@ -29,7 +29,7 @@ __decorate([
     __metadata("design:type", String)
 ], TierlistEntity.prototype, "url", void 0);
 __decorate([
-    (0, typeorm_2.Column)({ type: "enum", enum: ["Tier 0", "Tier 1", "Tier 2", "Tier 3","Rogue"] }),
+    (0, typeorm_2.Column)({ type: "enum",  enum: ["Tier 0", "Tier 1", "Tier 2", "Tier 3","Rogue"] }),
     __metadata("design:type", String)
 ], TierlistEntity.prototype, "category", void 0);
 __decorate([
