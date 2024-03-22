@@ -17,7 +17,7 @@ export class TierlistEntity{
     @Column({type: "varchar", length:192})
     url: string
 
-    @Column({type:"enum", enum: ["Tier 0","Tier 1","Tier 2","Tier 3"]})
+    @Column({type:"enum", enum: ["Tier 0","Tier 1","Tier 2","Tier 3", "Rogue"]})
     category: string
 
     @Column({type : "enum", enum: formats, default: formats.DuelLinks})
